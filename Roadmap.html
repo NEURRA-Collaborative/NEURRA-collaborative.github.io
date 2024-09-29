@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S🍾U👙P💰E🛥️R🕶️M🛩️O🍨D🏖️E🛍️L – Roadmap</title>
+
+    <!-- Importing Playfair Display for the title and Poppins for the links -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400&display=swap" rel="stylesheet">
+
+    <!-- CSS for links, canvas styling, and other styles -->
+    <style>
+        /* Background with gradient or color */
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #FF4500, #FF8C00, #FFD700); /* Red, orange, yellow gradient */
+            min-height: 100vh;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-direction: column; /* Stack elements vertically */
+            position: relative;
+        }
+
+        /* Global links positioned in the top right corner */
+        .global-links {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 2; /* Ensure links stay above the background and confetti */
+        }
+
+        /* Individual link styling */
+        .global-links a {
+            color: white; /* White links to stand out against background */
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif; /* Applying Poppins font */
+            margin-left: 20px;
+            font-size: 1.2em; /* Adjust size for readability */
+        }
+
+        /* Change color on hover */
+        .global-links a:hover {
+            color: #FFD700; /* Gold color on hover */
+        }
+
+        /* Gallery container */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Responsive grid */
+            gap: 15px; /* Space between images */
+            padding: 20px;
+            width: 90%; /* Gallery takes up 90% of the available width */
+            overflow-y: auto; /* Allow scrolling if content overflows */
+            max-height: 70vh; /* Adjust height to fit within viewport */
+        }
+
+        /* Styling individual images */
+        .gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px; /* Optional: Rounded corners */
+            transition: transform 0.3s; /* Add a zoom effect on hover */
+        }
+
+        /* Zoom effect on hover */
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Canvas styling for confetti */
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* Confetti won't block interaction */
+            z-index: 0; /* Ensure it doesn't interfere with your content */
+        }
+
+        /* Styling the title */
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4em;
+            color: white;
+            margin: 20px 0; /* Add space between the title and top */
+        }
+
+        /* Basic paragraph styling */
+        p {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5em;
+            color: white;
+            margin-top: 10px; /* Add space between the title and paragraph */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Global links in the top-right corner -->
+    <div class="global-links">
+        <a href="index.html">Home</a>
+        <a href="About.html">About</a>
+        <a href="Roadmap.html">Roadmap</a>
+    </div>
+
+    <!-- Your page content -->
+    <h1>Roadmap</h1>
+
+    <!-- Image Gallery Container -->
+    <div class="gallery">
+        <!-- Wrap the images in anchor tags to open them in new windows -->
+        <a href="Supermodel Boat.jpg" target="_blank">
+            <img src="Supermodel Boat.jpg" alt="Supermodel Boat">
+        </a>
+        <a href="SM_1.jpeg" target="_blank">
+            <img src="SM_1.jpeg" alt="Supermodel Island">
+        </a>
+        <a href="SM_2.jpeg" target="_blank">
+            <img src="SM_2.jpeg" alt="Supermodel Jet">
+        </a>
+        <a href="SM_3.jpeg" target="_blank">
+            <img src="SM_3.jpeg" alt="Supermodel Cocktail">
+        </a>
+ <a href="SM_10.jpeg" target="_blank">
+            <img src="SM_10.jpeg" alt="Do you wanna know where the rainbow ends?">
+</a>
+<a href="SM_4.jpeg" target="_blank">
+            <img src="SM_4.jpeg" alt="My first yacht.">
+</a>
+<a href="SM_11.jpeg" target="_blank">
+            <img src="SM_11.jpeg" alt="3-Michelin Star Restaurant">
+</a>
+<a href="SM_6.jpeg" target="_blank">
+            <img src="SM_6.jpeg" alt="Supermodel Cocktail">
+</a>
+<a href="SM_16.jpeg" target="_blank">
+            <img src="SM_16.jpeg" alt="Supermodel Cocktail">
+        </a>
+<a href="SM_8.jpeg" target="_blank">
+            <img src="SM_8.jpeg" alt="Supermodel Cocktail">
+        </a>
+<a href="SM_12.jpeg" target="_blank">
+            <img src="SM_12.jpeg" alt="Supermodel Cocktail">
+        </a>
+<a href="SM_9.jpeg" target="_blank">
+            <img src="SM_9.jpeg" alt="Supermodel Cocktail">
+        </a>
+<a href="SM_14.jpeg" target="_blank">
+            <img src="SM_14.jpeg" alt="Supermodel Cocktail">
+        </a>
+<a href="SM_13.jpeg" target="_blank">
+            <img src="SM_13.jpeg" alt="Supermodel Cocktail">
+        </a>
+<a href="SM_18.jpeg" target="_blank">
+            <img src="SM_18.jpeg" alt="Supermodel Cocktail">
+        </a>
+<a href="SM_20.jpeg" target="_blank">
+            <img src="SM_20.jpeg" alt="Supermodel Cocktail">
+        </a>
+        <!-- Add more images as needed -->
+    </div>
+
+    <!-- Canvas for confetti animation -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- JavaScript for confetti animation -->
+    <script>
+        (function() {
+            var canvas = document.getElementById('confetti-canvas');
+            var ctx = canvas.getContext('2d');
+
+            // Set canvas size
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            // Confetti particles array
+            var confettiParticles = [];
+            var colors = ['#FF4500', '#FF8C00', '#FFD700', '#32CD32', '#1E90FF'];
+
+            function ConfettiParticle() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height - canvas.height;
+                this.r = Math.random() * 10 + 5;
+                this.d = Math.random() * canvas.height;
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+                this.tilt = Math.random() * 10 - 5;
+                this.tiltAngle = Math.random() * Math.PI;
+                this.tiltAngleIncrement = Math.random() * 0.07 + 0.05;
+
+                this.update = function() {
+                    this.y += Math.cos(this.d) + 1 + this.r / 2;
+                    this.x += Math.sin(this.d);
+                    this.tiltAngle += this.tiltAngleIncrement;
+                    this.tilt = Math.sin(this.tiltAngle) * 15;
+                }
+
+                this.draw = function() {
+                    ctx.beginPath();
+                    ctx.lineWidth = this.r;
+                    ctx.strokeStyle = this.color;
+                    ctx.moveTo(this.x + this.tilt + this.r / 2, this.y);
+                    ctx.lineTo(this.x + this.tilt, this.y + this.tilt + this.r / 2);
+                    ctx.stroke();
+                }
+            }
+
+            for (var i = 0; i < 100; i++) {
+                confettiParticles.push(new ConfettiParticle());
+            }
+
+            function render() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                confettiParticles.forEach(function(p) {
+                    p.update();
+                    p.draw();
+                });
+                requestAnimationFrame(render);
+            }
+
+            render();
+        })();
+    </script>
+<!-- Footer with copyright and disclaimer -->
+<footer>
+    &copy; 2024 Supermodel Coin. All rights reserved.<br>
+    Disclaimer: This is a meme coin and has no intrinsic value. It is for entertainment purposes only.
+</footer>
+
+<!-- Add the following CSS to your page's <style> section -->
+<style>
+    footer {
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.8em;
+        color: rgba(255, 255, 255, 0.8); /* Slight transparency */
+        text-align: center;
+        padding: 10px 20px;
+        position: fixed; /* Fixed to the bottom */
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.3); /* Slightly dark background */
+        z-index: 1000; /* Ensure it stays above other elements */
+    }
+</style>
+
+
+</body>
+</html>
